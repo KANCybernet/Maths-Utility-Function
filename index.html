@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC>
+<html lang="en">
+  <head>
+    <title>Math Utility Page| Chalu&apos;s Calculator App</title>
+    <meta charset="utf-8" content="text/html" />
+    <link
+      rel="stylesheet"
+      href="scripts/main.css~ddf52085bfa268a69ce52b07c03aa888"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0"
+    />
+  </head>
+
+  <body id="beginning">
+    <div id="app">
+      <header class="container primaryheader">
+        <time></time>
+        <h1>WELCOME TO THE MATH UTILITY PAGE.</h1>
+        <p class="instruction">
+          Please select one of the options to the left to begin.
+        </p>
+        <div class="navigator">
+          <button class="navicon animated" role="button">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </header>
+      <section class="floated-info">
+        <aside class="col-1-3 animated optionbox">
+          <ul
+            id="options"
+            data-default_color="orange"
+            data-active_color="#8080C0"
+          >
+            <li
+              class="option-item"
+              v-for="option in options"
+              v-bind:class="option === activeOption ? 'is-active-option-item' : null"
+            >
+              <a class="option-link" v-on:click.prevent="activateOption(option)"
+                >{{option.description}}</a
+              >
+            </li>
+          </ul>
+          <hr />
+          <button class="navigate">
+            <a data-action="showMore" href="javascript:void(0)">More&gt;&gt;</a>
+          </button>
+        </aside>
+        <div class="col-2-3" id="display">
+          <div
+            v-for="(output, index) in display"
+            v-bind:is="output.type"
+            v-bind:key="index"
+            v-bind="output.content"
+          ></div>
+        </div>
+        <div class="col-1-3" id="instructions">
+          Please read the instructions carefully and take care to input your
+          parameters according to the format specified.
+        </div>
+      </section>
+      <section class="container">
+        <section class="argumentForms">
+          <keep-alive>
+            <form v-bind:is="activeOption.inputComponent"></form>
+          </keep-alive>
+        </section>
+      </section>
+      <footer class="container">
+        <small>
+          <p>&copy; Chalu Utility Functions</p>
+        </small>
+      </footer>
+    </div>
+    <script type="text/javascript" src="scripts/main.js"></script>
+  </body>
+</html>
